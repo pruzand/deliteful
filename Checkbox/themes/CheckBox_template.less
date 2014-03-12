@@ -1,0 +1,39 @@
+.d-checkbox {
+	margin-left: 3px;
+	margin-right: 3px;
+}
+.d-checkbox > input[type=checkbox] {
+	position: relative;
+	margin: 0px;
+	width: 1em;
+	height: 1em;
+	border-style: outset;
+	border-width: 1px;
+	overflow: hidden;
+	.d-button-background-image();
+	font: inherit;
+	cursor: pointer;
+	.appearance(none);
+	.tap-highlight-color(rgba(255,255,255,0));
+	.d-checkbox-styles;
+	&:active {
+		.d-button-selected-background-image();
+	}
+}
+.d-checkbox > input[type=checkbox]:checked {
+	.d-button-checked-background-image();
+	&::after {
+		content: "\2714";
+		width: 0.3em;
+		.d-checkbox-checked-after-styles;
+	}
+	&:active {
+		.d-button-blue-selected-background-image();
+		&::after {
+			.d-checkbox-checked-selected-after-styles;
+		}
+	}
+}
+.d-checkbox > input[type=checkbox]:disabled {
+	.d-button-background-image();
+}
