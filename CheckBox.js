@@ -7,7 +7,7 @@ define([
 	"delite/CssState",
 	"delite/focus",
 	"delite/handlebars!./CheckBox/CheckBox.html",
-	"delite/themes/load!delite/themes/{{theme}}/common_css,./CheckBox/themes/{{theme}}/CheckBox_css"
+	"delite/theme!./CheckBox/themes/{{theme}}/CheckBox_css"
 ], function (dcl, on, domClass, register, FormWidget, CssState, focus, renderer) {
 
 	// summary:
