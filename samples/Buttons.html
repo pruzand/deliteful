@@ -11,20 +11,20 @@
 	<script type="text/javascript" src="../../delite/tests/boilerplate.js"></script>
 
 	<script type="text/javascript">
-		require({'dojo-bidi': true },[
+		require({'dojo-bidi': true }, [
 			"dojo/dom",
 			"dojo/on",
 			"delite/register",
 			"delite/Widget",
-			"deliteful/Button",
-//			"deliteful/ToggleButton",
 			"deliteful/CheckBox",
 			"dojo/domReady!"
 		], function (dom, on, register, Widget) {
 
 			var CW = register("my-cw", [HTMLInputElement, Widget], {
-				postCreate: function(){
-					this.on("click", function(){console.log("Clicked");});
+				postCreate: function () {
+					this.on("click", function () {
+						console.log("Clicked");
+					});
 				}
 			});
 			var div = document.createElement("div");
@@ -33,16 +33,16 @@
 
 
 			register.parse();
-			btn1.watch("checked", function(p,ov,v){
+			btn1.watch("checked", function (p, ov, v) {
 				console.log("checked changed");
 			});
 
 			// TODO: test programmatic creation, including that value and disabled get assigned to node correctly.
 		});
 
-		function checkForm(){
+		function checkForm() {
 			var b = document.getElementById("formToggleB"),
-				v = b.value;
+					v = b.value;
 			console.log("value: " + v + "   checked:" + b.checked);
 			b = document.getElementById("cb");
 			v = b.value;
@@ -54,36 +54,28 @@
 
 </head>
 <body>
-<!--
-<button is="d-toggle-button" id="btn1" disabled checked>Toggle</button>
-<button is="d-toggle-button" id="btn2" label="Toggle 2" checked iconClass="duiIconCopy"></button>
-<button is="d-toggle-button" id="btn3" checked iconClass="duiIconCopy"></button>
--->
-<button id="b1">HTML Button</button>
-<p><label><d-checkbox id="cb1"></d-checkbox>This is Checkbox (cb1)</label></p>
-<p><d-checkbox id="cb2" disabled></d-checkbox><label for="cb2">This is Checkbox disabled (cb2): </label></p>
-<p><input type="checkbox"></p>
-<p><label>Checkbox checked (cb3): <d-checkbox id="cb3" checked name="foo"></d-checkbox></label></p>
-<p><label>Checkbox disabled (cb4): <d-checkbox id="cb4" checked disabled></d-checkbox></label></p>
-<p>
-<p><label for="cb5">Native checkbox (cb5): </label><input id="cb5" type="checkbox" checked value="on"/></p>
-<p><label for="cb6">Native checkbox disabled (cb6): </label><input id="cb6" type="checkbox" disabled /></p>
-<p><label for="cb6">Native checkbox checked disabled (cb6): </label><input id="cb6" type="checkbox" disabled checked/></p>
-<p/>
+<button id="b1">HTML Button</button><input type="checkbox">
+<fieldset>
+	<legend>Wrapped in label</legend>
+	<p><label><d-checkbox id="cb1"></d-checkbox>This is Checkbox (cb1)</label></p>
+	<p><label><d-checkbox id="cb2" disabled></d-checkbox>This is Checkbox disabled (cb2)</label></p>
+	<p><label><input id="ncb1" type="checkbox" checked value="on"/>Native checkbox (ncb5): </label></p>
+	<p><label><input id="ncb2" type="checkbox" disabled/>Native checkbox disabled (ncb6): </label></p>
+</fieldset>
+<fieldset>
+	<legend>Using label for=</legend>
+	<p><label for="cb3">This is Checkbox (cb1)</label><d-checkbox id="cb3"></d-checkbox></p>
+	<p><label for="cb4">This is Checkbox disabled (cb2)</label><d-checkbox id="cb4" disabled></d-checkbox></p>
+	<p><label for="ncb3">Native checkbox (cb5): </label><input id="ncb3" type="checkbox" checked value="on"/></p>
+	<p><label for="ncb4">Native checkbox disabled (cb6): </label><input id="ncb4" type="checkbox" disabled/></p>
+</fieldset>
 <form onsubmit="return checkForm();">
 	<fieldset>
 		<legend>Buttons</legend>
 		<p>
-<!--
-			<button is="d-toggle-button" type = "button" value="off" id="formToggleB">
-				standard button
-			</button>
--->
-
-			<input type = "button"
-				   value = "input button" />
-			<input type = "reset" />
-			<input type = "submit" />
+			<input type="button" value="input button"/>
+			<input type="reset"/>
+			<input type="submit"/>
 			<d-checkbox id="cb7"></d-checkbox>
 			<input type="checkbox" id="cb8" name="cb8">
 		</p>

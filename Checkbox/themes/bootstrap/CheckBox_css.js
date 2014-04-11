@@ -1,11 +1,11 @@
 define(function(){ return '\
 .d-checkbox {\
+  position: relative;\
   margin-left: 3px;\
   margin-right: 3px;\
   min-height: 20px;\
   margin-top: 10px;\
   margin-bottom: 10px;\
-  position: relative;\
   line-height: 10px;\
 }\
 .d-checkbox.d-focused {\
@@ -27,6 +27,9 @@ define(function(){ return '\
   top: 0px;\
   content: "";\
 }\
+.d-checkbox.d-rtl::before {\
+  right: 0px;\
+}\
 .d-checkbox.d-checked::before {\
   content: "\\2714";\
 }\
@@ -43,15 +46,13 @@ fieldset[disabled] .d-checkbox {\
   cursor: not-allowed;\
 }\
 .d-checkbox > input[type=checkbox] {\
-  margin: 0px;\
   width: 12px;\
   height: 12px;\
+  margin: 0px;\
   margin-top: 1px \\9;\
   /* IE8-9 */\
   opacity: 0.01;\
   position: relative;\
-  border-style: outset;\
-  border-width: 1px;\
   overflow: hidden;\
   font: inherit;\
   cursor: pointer;\
