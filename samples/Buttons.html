@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+	<title>Dojo Toolkit - Button test page</title>
+
+	<!-- For testing purposes.  Real applications should load the AMD loader directly -->
+	<script type="text/javascript" src="../../delite/tests/boilerplate.js"></script>
+
+	<script type="text/javascript">
+		require({'dojo-bidi': true }, [
+			"dojo/dom",
+			"dojo/on",
+			"delite/register",
+			"delite/Widget",
+			"deliteful/CheckBox",
+			"deliteful/ToggleButton",
+			"deliteful/Switch",
+			"dojo/domReady!"
+		], function (dom, on, register, Widget) {
+
+			var CW = register("my-cw", [HTMLInputElement, Widget], {
+				postCreate: function () {
+					this.on("click", function () {
+						console.log("Clicked");
+					});
+				}
+			});
+			var div = document.createElement("div");
+			div.innerHTML = '<label for="cw1">It is a custom widget (1): </label><input type="checkbox" is="my-cw" id="cw1" tabIndex="0"/><p></p>';
+			document.body.appendChild(div);
+
+
+			register.parse();
+
+			// TODO: test programmatic creation, including that value and disabled get assigned to node correctly.
+		});
+
+		function checkForm() {
+			var b = document.getElementById("formToggleB"),
+					v = b.value;
+			console.log("value: " + v + "   checked:" + b.checked);
+			b = document.getElementById("cb");
+			v = b.value;
+			console.log("value: " + v);
+			return false;
+		}
+
+	</script>
+
+</head>
+<body>
+<button id="b1">HTML Button</button><input type="checkbox" checked="true" id="c1">
+<fieldset>
+	<legend>Wrapped in label</legend>
+	<p><label><d-checkbox id="cb1"></d-checkbox>This is Checkbox (cb1)</label></p>
+	<p><label><d-checkbox id="cb2" disabled></d-checkbox>This is Checkbox disabled (cb2)</label></p>
+	<p><label><input id="ncb1" type="checkbox" checked value="on"/>Native checkbox (ncb5): </label></p>
+	<p><label><input id="ncb2" type="checkbox" disabled/>Native checkbox disabled (ncb6): </label></p>
+	<p><label onclick="console.log('click on label');">This is a Switch: <d-switch id="sw1"></d-switch></label></p>
+	<p><label>This is a Switch with label: <d-switch id="sw2" checked="true" checkedLabel="ON" uncheckedLabel="OFF"></d-switch></label></p>
+</fieldset>
+<fieldset>
+	<legend>Using label for=</legend>
+	<p><d-checkbox id="cb3"></d-checkbox><label for="cb3">This is Checkbox (cb1)</label></p>
+	<p><d-checkbox id="cb4" disabled></d-checkbox><label for="cb4">This is Checkbox disabled (cb2)</label></p>
+	<p><input id="ncb3" type="checkbox" checked value="on"/><label for="ncb3">Native checkbox (cb5): </label></p>
+	<p><input id="ncb4" type="checkbox" disabled/><label for="ncb4">Native checkbox disabled (cb6): </label></p>
+	<p><d-switch id="sw1"></d-switch><label>This is a Switch</label></p>
+</fieldset>
+
+<button is="d-button">Button</button>
+<button is="d-toggle-button">Push</button>
+<d-switch id="sw3" checked="true" checkedLabel="ON" uncheckedLabel="OFF"></d-switch>
+
+
+<form onsubmit="return checkForm();">
+	<fieldset>
+		<legend>Buttons</legend>
+		<p>
+			<input type="button" value="input button"/>
+			<input type="reset"/>
+			<input type="submit"/>
+			<d-checkbox id="cb7"></d-checkbox>
+			<input type="checkbox" id="cb8" name="cb8">
+		</p>
+	</fieldset>
+</form>
+
+</body>
+</html>

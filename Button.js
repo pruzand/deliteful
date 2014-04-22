@@ -20,16 +20,6 @@ define([
 		//		Text to display in button.
 		label: "",
 
-		// showLabel: Boolean
-		//		Set this to true to hide the label text and display only the icon.
-		//		(If showLabel=false then iconClass must be specified.)
-		//		Especially useful for toolbars.
-		//		If showLabel=true, the label will become the title (a.k.a. tooltip/hint) of the icon.
-		//
-		//		The exception case is for computers in high-contrast mode, where the label
-		//		will still be displayed, since the icon doesn't appear.
-		showLabel: true,
-
 		// iconClass: String
 		//		Class to apply to DOMNode in button to make it display an icon
 		iconClass: "",
@@ -57,7 +47,7 @@ define([
 
 			// Add or remove icon, or change its class
 			if ("iconClass" in oldValues) {
-				if (this.iconClass && !has("highcontrast")) {
+				if (this.iconClass) {
 					this.iconNode = this.iconNode || domConstruct.create("span", null, this, "first");
 					this.iconNode.className = "d-reset d-inline d-icon " + this.iconClass;
 				} else if (this.iconNode) {
@@ -66,9 +56,8 @@ define([
 				}
 			}
 			// Set or remove label
-			var showLabel = this.label && (this.showLabel || has("highcontrast"));
 			if ("label" in oldValues || "showLabel" in oldValues) {
-				if (showLabel) {
+				if (this.label) {
 					this.containerNode = this.containerNode ||
 						domConstruct.create("span", {className: "d-reset d-inline duiButtonText"}, this);
 					this.containerNode.textContent = this.label;
@@ -81,7 +70,7 @@ define([
 			// Set title.  If no label is shown and no title has been specified,
 			// label is also set as title attribute of icon.
 			if ("title" in oldValues || "label" in oldValues) {
-				this.title = this.title || (!showLabel && this.label) || "";
+				this.title = this.title || this.label || "";
 			}
 		}
 	});

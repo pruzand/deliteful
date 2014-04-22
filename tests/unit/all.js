@@ -15,5 +15,9 @@ define([
 	"./ProgressIndicator",
 	"./Toaster",
 	"./ToasterMessage",
-	"./ToasterMessage-insert-show-hide-remove"
+	"./ToasterMessage-insert-show-hide-remove",
+	"./CheckBox",
+	"./Switch",
+	"./Toggle",
+	"./ToggleButton"
 ]);
