@@ -1,3 +1,9 @@
+@font-face {
+	font-family: 'myicons';
+	src: url('./myicons.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
 /* App style */
 * {
 	font-family: sans-serif;
@@ -8,8 +14,8 @@
 }
 
 .pageHeader, .pageFooter{
-	background-color: #1AA1E1;
-	color: white;
+	background-color: #efefef;
+	color: black;
 }
 
 .pageHeader {
@@ -58,4 +64,66 @@
 
 .d-side-pane {
 	border-right: 1px solid #000000;
+}
+
+.d-button.menuButton {
+	padding: 0px;
+	font-size: x-large;
+	color: #5a5a5a;
+}
+.d-button.menuButton span {
+	margin-top: -3px;
+}
+
+.menu {
+	color: black;
+	border-bottom-color: darkgray;
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	padding: 15px;
+}
+.menuHeader {
+	background-color: rgb(213, 212, 212);
+}
+.menuBg {
+	background-color: rgb(247, 247, 247);
+}
+.selected {
+	background-color: rgb(152, 181, 241);
+}
+
+.statusText {
+	margin-left: 20px;
+}
+
+.statusHeaderText {
+	margin-left: 20px;
+	font-size:0.8em;
+	padding-top:10px;
+}
+.storage {
+	width:200px;
+}
+
+.syncIndicator {
+	width: 20px;
+	height:20px;
+	margin-top:10px;
+	margin-left:3px;
+}
+
+.d-toaster-type-success {
+	border-color: #97C274;
+}
+
+.fileIcon {
+	padding-top:10px;
+}
+.fileIcon:before {
+	background-image: url('file_folder.png');
+	width: 40px;
+	height: 40px;
+	display:inline-block;
+	background-size: contain;
+	content: "";
 }

@@ -19,31 +19,36 @@
 	<script type="text/javascript">
 		require([
 			"delite/register",
+			"deliteful/ToasterMessage",
+			"deliteful/Toaster",
 			"deliteful/ViewStack",
 			"deliteful/SidePane",
 			"deliteful/LinearLayout",
+			"deliteful/Button",
+			"deliteful/ScrollableContainer",
+			"deliteful/ProgressBar",
+			"deliteful/Switch",
+			"deliteful/CheckBox",
 			"deliteful/list/List",
 			"delite/css!deliteful/ViewStack/transitions/fade_css",
 			"requirejs-domready/domReady!"
-		], function(register){
+		], function(register, ToasterMessage){
 			register.parse();
-			for (var i = 1; i < 100; i++){
-				list.store.add({label: "Item #" + i});
-			}
-			menulist.store.add({label: "View A", target:"aaa"});
-			menulist.store.add({label: "View B", target:"bbb"});
-			menulist.store.add({label: "View C", target:"ccc"});
-			menulist.store.add({label: "View D", target:"ddd"});
-			var actionHandler = function(event, list) {
-				var renderer = list.getEnclosingRenderer(event.target);
-				if (renderer) {
-					vs.show(renderer.item.target, {transition: "fade"});
-				}
-			};
+			list.store.add({label: "Deliteful User Guide.pdf" , iconclass: "fileIcon", righttext:"Shared with 3 people"});
+			list.store.add({label: "Deliteful Quick Start.pdf" , iconclass: "fileIcon"});
+			list.store.add({label: "HTMLImports-spec.pdf" , iconclass: "fileIcon"});
+			list.store.add({label: "architecture.pdf" , iconclass: "fileIcon"});
+			list.store.add({label: "delite-design.pdf" , iconclass: "fileIcon"});
+			list.store.add({label: "delitefulf-FAQ.pdf" , iconclass: "fileIcon"});
+			list.store.add({label: "github-setup.pdf" , iconclass: "fileIcon"});
+			list.store.add({label: "git-101.pdf" , iconclass: "fileIcon"});
 
-			menulist.on("click", function (event) {
-				actionHandler(event, menulist);
-			});
+
+//			for (var i = 1; i < 100; i++){
+//				list.store.add({label: "Item #" + i, iconclass: "fileIcon"});
+//			}
+			var msg = new ToasterMessage({message:"Upload complete: deliteful.pdf", duration: -1, dismissible: "off", type:"success"});
+			document.querySelector("d-toaster").postMessage(msg);
 		});
 	</script>
 </head>
@@ -52,20 +57,41 @@
 <d-side-pane mode="push" position="start" id="leftPane">
 	<d-linear-layout class="height100">
 		<d-linear-layout vertical="false" class="pageHeader">
-			<div class="fill titleStyle">Menu</div>
+			<div class="fill titleStyle">@john</div>
+			<div><button is="d-button" onclick="leftPane.hide()" class="menuButton">&#9776;</button></div>
 		</d-linear-layout>
-		<d-view-stack id="leftStack" class="width100 fill" style="background-color: white">
-			<d-linear-layout id="menu">
-				<div class="fill">
-					<d-list style="height: 100%" id="menulist" targetAttr="target"></d-list>
-				</div>
-				<button class="appButton2" onclick="leftStack.show('settings')">&gt;</button>
+		<d-scrollable-container class="menuBg">
+			<d-linear-layout>
+				<span class="width100 menu menuHeader">My Cloud</span>
+				<span class="width100 menu menuItem">All Content</span>
+				<span class="width100 menu menuItem selected">Shared</span>
+				<span class="width100 menu menuItem">Recent</span>
+				<span class="width100 menu menuItem">Search</span>
+				<span class="width100 menu menuHeader">Settings</span>
+				<d-linear-layout vertical="false" class="menu"><span class="fill  menuItem">Offline</span><d-switch checked="true" style="line-height:2.2em;"></d-switch></d-linear-layout>
+				<d-linear-layout vertical="false" class="menu"><span class="fill  menuItem">Encryption</span><d-checkbox checked="true"></d-checkbox></d-linear-layout>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+				<span class="width100 menu menuItem">option A</span>
+
 			</d-linear-layout>
-			<d-linear-layout id="settings" style="background-color: #bce8f1">
-				<div class="fill"><div class="titleStyle">Page 2</div></div>
-				<button class="appButton2" onclick="leftStack.show('menu', {reverse:true})">&lt;</button>
-			</d-linear-layout>
-		</d-view-stack>
+		</d-scrollable-container>
 	</d-linear-layout>
 </d-side-pane>
 
@@ -73,8 +99,10 @@
 <d-linear-layout class="page width100 height100">
 	<!-- Header -->
 	<d-linear-layout vertical="false" class="pageHeader">
-		<button class="appButton" onclick="leftPane.toggle()">Menu</button>
-		<div class="fill titleStyle">Deliteful Mobile App</div>
+		<div><button is="d-button" onclick="leftPane.show()" class="menuButton">&#9776;</button></div>
+		<span class="statusHeaderText">Sync in progress</span><d-progress-indicator active="true" class="syncIndicator"></d-progress-indicator>
+		<div class="fill titleStyle">Your Shared Content</div>
+		<!--<div><button is="d-button"></button></div>-->
 	</d-linear-layout>
 	<!-- Main content (ViewStack) -->
 	<d-view-stack id="vs" class="fill">
@@ -93,11 +121,10 @@
 	</d-view-stack>
 	<!-- Footer -->
 	<d-linear-layout vertical="false" class="pageFooter">
-		<div class="fill"><button class="appButton" onclick="vs.show(aaa)">A</button></div>
-		<div class="fill"><button class="appButton" onclick="vs.show(bbb)">B</button></div>
-		<div class="fill"><button class="appButton" onclick="vs.show(ccc)">C</button></div>
-		<div class="fill"><button class="appButton" onclick="vs.show(ddd)">D</button></div>
+		<span class="statusText">Storage:</span><d-progress-bar value=40 min=0 max=100 displayExtMsg="true" class="storage"></d-progress-bar>
+		<span class="fill"></span>
 	</d-linear-layout>
 </d-linear-layout>
+<d-toaster placementClass="d-toaster-placement-br"></d-toaster>
 </body>
 </html>
