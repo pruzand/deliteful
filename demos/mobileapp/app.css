@@ -1,6 +1,10 @@
 @font-face {
-	font-family: 'myicons';
-	src: url('./myicons.ttf') format('truetype');
+	font-family: 'delitefont';
+	src:url('fonts/delitefont.eot');
+	src:url('fonts/delitefont.eot') format('embedded-opentype'),
+	url('fonts/delitefont.woff') format('woff'),
+	url('fonts/delitefont.ttf') format('truetype'),
+	url('fonts/delitefont.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -70,6 +74,7 @@
 	padding: 0px;
 	font-size: x-large;
 	color: #5a5a5a;
+	font-family: delitefont;
 }
 .d-button.menuButton span {
 	margin-top: -3px;
